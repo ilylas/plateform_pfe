@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Bienvenue {{ user.first_name|default:user.username }} 👋</h2>
+
+{% if user.role == 'etudiant' %}
+  <div class="alert alert-info mt-3">Espace <strong>Étudiant</strong> : ici tu pourras consulter les offres et suivre tes candidatures.</div>
+{% elif user.role == 'encadrant_pro' %}
+  <div class="alert alert-success mt-3">Espace <strong>Encadrant professionnel</strong> ({{ user.entreprise }}) : ici tu pourras publier des offres et voir les candidatures.</div>
+{% elif user.role == 'admin' %}
+  <div class="alert alert-warning mt-3">Espace <strong>Administration</strong> : ici tu pourras valider les offres.</div>
+{% endif %}
+{% endblock %}
